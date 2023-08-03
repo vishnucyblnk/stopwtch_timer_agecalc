@@ -97,14 +97,27 @@ let cuntstrt = ()=> {
   csec = cuntsec.value || 0;
   cmin = cuntmin.value || 0;
   chrs = cunthrs.value || 0;
-  cuntinter = setInterval(counter, 10);
+  if (csec >= 0 && cmin >= 0 && chrs >= 0) {
+    // if(csec == 0 ){
+    //   csec =60
+    // }
+    // else if(cmin == 0){
+    //   cmin = 60
+    // }
+    cuntinter = setInterval(counter, 10.101010101);
+  }
+  else {
+    document.getElementById(
+      "cunterr"
+    ).innerHTML = `*DoubleClick on STOP Button & enter time above zero`;
+  }
 }
 
 // Function to Resume Timer setInterval call
 
 let cuntrestrt = ()=> {
-  button1.disabled = true;
-  cuntinter = setInterval(counter, 10.10101010101);
+  cntbutt.disabled = true;
+  cuntinter = setInterval(counter, 10.101010101);
 }
 
 // Function to stop Timer setInterval call
@@ -115,10 +128,8 @@ let cuntstop = ()=> {
 }
 
 // Function of Timer that call repeatedly
-
 let counter = ()=> {
-  if (csec >= 0 && cmin >= 0 && chrs >= 0) {
-    --cuntmillisec;
+  --cuntmillisec;
     if (cuntmillisec == 0) {
       cuntmillisec = 99;
       --csec;
@@ -133,43 +144,39 @@ let counter = ()=> {
     if (csec == 0) {
       if (cmin == 0 && csec == 0) {
         cmin = 60;
+        disply(chrs,0,0)
         chrs--;
+      }
+      else{
+        disply(chrs,cmin,0)
       }
       csec = 60;
       cmin--;
     }
-    if (csec == 60) {
-      var cunterwtch =
-        String(chrs).padStart(2, "0") +
-        " : " +
-        String(cmin).padStart(2, "0") +
-        " : " +
-        String("0").padStart(2, "0") +
-        ".";
-    } else {
-      var cunterwtch =
-        String(chrs).padStart(2, "0") +
-        " : " +
-        String(cmin).padStart(2, "0") +
-        " : " +
-        String(csec).padStart(2, "0") +
-        ".";
+    else if(csec != 60){
+      disply(chrs,cmin,csec)
     }
 
-    document.getElementById("cunterwtch").innerHTML = cunterwtch;
     document.getElementById("cuntmilli").innerHTML = String(
       cuntmillisec
     ).padStart(2, "0");
-  } else {
-    document.getElementById(
-      "cunterr"
-    ).innerHTML = `*DoubleClick on STOP Button & enter time above zero`;
   }
-}
 
+
+  var disply = (res_hrs,res_min,res_sec) =>{
+    console.log(res_hrs,res_min,res_sec);
+    var cunterwtch =
+      String(res_hrs).padStart(2, "0") +
+      " : " +
+      String(res_min).padStart(2, "0") +
+      " : " +
+      String(res_sec).padStart(2, "0") +
+      ".";
+      document.getElementById("cunterwtch").innerHTML = cunterwtch;
+  }
 // Timer function button action forwarding to each function
 
-document.getElementById("cntbutt").addEventListener("click", cuntstrt);
+document.getElementById("cntbutt").addEventListener("click", cuntstrt,{once:true});
 document.getElementById("cntstpbutt").addEventListener("click", cuntstop);
 
 // -----------------------------------------------------------------------------------------------

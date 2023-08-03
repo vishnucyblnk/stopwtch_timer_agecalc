@@ -39,7 +39,7 @@
                     <button class="btn btn-primary btn-lg shadow" id="startbutt" type="button">START</button>
                     <button class="btn btn-primary btn-lg shadow" id="lapbutt" type="button">LAP</button>
                     <button class="btn btn-primary btn-lg shadow" id="stopbutt" type="button" data-bs-toggle="tooltip"
-                        data-bs-placement="right" data-bs-title="SINGLECLICK for PAUSE DOUBLECLICK for CLEAR"
+                        data-bs-placement="right" data-bs-title="CLICK for PAUSE DOUBLECLICK for CLEAR"
                         ondblclick="location.reload()">PAUSE/STOP</button>
                 </div>
 
@@ -80,10 +80,11 @@
 
                 <p id="cunterr" class="text-primary fw-bold"></p>
                 <div class="d-flex justify-content-evenly align-items-center">
-                    <button class="btn btn-primary btn-lg shadow" id="cntbutt" class="mt-4" type="button">START</button>
+                    <button class="btn btn-primary btn-lg shadow" id="cntbutt" class="mt-4" type="button" data-bs-toggle="tooltip" data-bs-placement="left"
+                    data-bs-title="CLICK for START DOUBLECLICK for RESUME" ondblclick="cuntrestrt()">START</button>
                     <button class="btn btn-primary btn-lg shadow" id="cntstpbutt" class="mt-4" type="button"
                         data-bs-toggle="tooltip" data-bs-placement="right"
-                        data-bs-title="SINGLECLICK for PAUSE DOUBLECLICK for CLEAR"
+                        data-bs-title="CLICK for PAUSE DOUBLECLICK for CLEAR"
                         ondblclick="location.reload()">PAUSE/STOP</button>
                 </div>
             </div>
